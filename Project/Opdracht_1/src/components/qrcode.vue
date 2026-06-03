@@ -1,6 +1,6 @@
 <script setup>
 function goToPage() {
-  window.location.href = '/webbuild/index.html'
+  window.location.href = '/WebBuild/index.html'
 }
 </script>
 
