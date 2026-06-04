@@ -37,9 +37,9 @@ async function haalGrondWaterStandOp() {
     const endDate = Math.floor(end.getTime() / 1000);
 
     const url =
-      `http://localhost:3000/api/grondwater` +
-      `?start_date=${startDate}` +
-      `&end_date=${endDate}`;
+        `/api/grondwater` +
+        `?start_date=${startDate}` +
+        `&end_date=${endDate}`;
 
     console.log("Request:", url);
 
@@ -93,10 +93,6 @@ onUnmounted(() => {
 <template>
   <div>
     <h2>Grondwaterstand</h2>
-
-    <p>Datum: {{ date }}</p>
-
-    <p>Tijd: {{ currentTime }}</p>
 
     <h3>{{ grondWaterStand }}</h3>
   </div>
