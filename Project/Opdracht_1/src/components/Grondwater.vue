@@ -53,19 +53,13 @@ async function haalGrondWaterStandOp() {
 
     console.log("API RESULT:", result);
 
-    if (Array.isArray(result) && result.length > 0) {
-      grondWaterStand.value = result[0].value + " m";
-    } else if (
-      result?.data &&
-      Array.isArray(result.data) &&
-      result.data.length > 0
-    ) {
-      grondWaterStand.value = result.data[0].value + " m";
-    } else if (result?.value !== undefined) {
-      grondWaterStand.value = result.value + " m";
-    } else {
-      grondWaterStand.value = "Geen meting gevonden";
-    }
+if (result?.data && Array.isArray(result.data) && result.data.length > 0) {
+  const laatsteMeting = result.data[result.data.length - 1];
+
+  grondWaterStand.value = laatsteMeting.value + " m";
+} else {
+  grondWaterStand.value = "Geen meting gevonden";
+}
 
   } catch (err) {
     console.error("Fout:", err);
