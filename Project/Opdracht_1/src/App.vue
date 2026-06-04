@@ -141,6 +141,8 @@ function updateTemperature(value) {
   width: 100%;
   background-color: #0B84B7;
   z-index: 5;
+  max-height: 500px;
+  min-height: 10px;
 }
 
 #footer{
