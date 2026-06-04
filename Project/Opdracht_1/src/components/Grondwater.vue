@@ -98,6 +98,7 @@ div {
 }
 
 h2 {
+    color: white;
   margin-bottom: 10px;
 }
 
