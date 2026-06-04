@@ -103,6 +103,7 @@ h2 {
 }
 
 h3 {
+    font-size: 50px;
   color: #0099ff;
 }
 </style>
