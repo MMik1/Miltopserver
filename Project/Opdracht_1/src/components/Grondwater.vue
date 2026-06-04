@@ -98,10 +98,12 @@ div {
 }
 
 h2 {
+    color: white;
   margin-bottom: 10px;
 }
 
 h3 {
+    font-size: 50px;
   color: #0099ff;
 }
 </style>

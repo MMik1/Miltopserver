@@ -68,8 +68,12 @@ function updateTemperature(value) {
     <div id="waterMeasure">
 
     </div>
+
     <div id="tree">
       <img :src="treeImage" alt="Seizoensboom">
+  <div id="grondwaterkastje">
+  <Grondwaterstand />
+</div>
     </div>
     <div id="grass"></div>
     <div id="dirt">
@@ -78,9 +82,6 @@ function updateTemperature(value) {
         <WhatsHappening @rain="updateRain" @temperature="updateTemperature" />
       </div>
     <div id="water" :style="{height: `${waterHeight}px`}"></div>
-  </div>
-    <div id="Grondwaterstand">
-    <Grondwaterstand />
   </div>
   <div id="Quiz">
     <Quiz />
@@ -118,6 +119,16 @@ function updateTemperature(value) {
   background-color: #7cd1ff;
 }
 
+#grondwaterkastje {
+  position: absolute;
+  left: 2vw;            
+  top: calc(500px - 20rem); 
+  
+  width: 15rem;
+  height: 20rem;
+  background-color: gray;
+  z-index: 10;
+}
 
 #grass{
   position: relative;
