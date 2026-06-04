@@ -6,6 +6,7 @@ import WhatsHappening from './components/WhatsHappening.vue'
 import Quiz from './components/Quiz.vue'
 import Footer from './components/Footer.vue'
 import qrcode from './components/qrcode.vue'
+import Grondwaterstand from './components/Grondwater.vue'
 
 import winterboom from './assets/test1.png'
 import lenteboom from './assets/test3.png'
@@ -77,6 +78,9 @@ function updateTemperature(value) {
         <WhatsHappening @rain="updateRain" @temperature="updateTemperature" />
       </div>
     <div id="water" :style="{height: `${waterHeight}px`}"></div>
+  </div>
+    <div id="Grondwaterstand">
+    <Grondwaterstand />
   </div>
   <div id="Quiz">
     <Quiz />
