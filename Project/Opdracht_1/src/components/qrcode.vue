@@ -10,9 +10,9 @@ function goToPage() {
 <div class="card">
  <h3 class="title">Speel onze game!</h3>
   <button @click="goToPage">Start</button>
- <div class="image-container">
+<!-- <div class="image-container">-->
 
- </div>
+<!-- </div>-->
 </div>
 </div>
 </section>
@@ -55,5 +55,12 @@ width: 200px;
 height: 200px;
 aspect-ratio: 1/1;
 background: url(../assets/qr-code.png)
+}
+
+button{
+  font-size: 20px;
+  background: #C4191F;
+  border-radius: 15px;
+  font-weight: bold;
 }
 </style>
