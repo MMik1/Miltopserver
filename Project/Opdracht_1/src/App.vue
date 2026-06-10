@@ -15,7 +15,7 @@ import herstboom from './assets/test1.png'
 
 const previousRain = ref(0)
 const previousTemp = ref(0)
-const waterHeight = ref(200)
+const waterHeight = ref(100)
 
 const treeImage = computed(() => {
   const month = new Date().getMonth() + 1
