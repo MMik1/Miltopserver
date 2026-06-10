@@ -16,6 +16,7 @@ import herstboom from './assets/test1.png'
 const previousRain = ref(0)
 const previousTemp = ref(0)
 const waterHeight = ref(100)
+const grondwaterRef = ref(null)
 
 const treeImage = computed(() => {
   const month = new Date().getMonth() + 1
@@ -42,6 +43,8 @@ function updateRain(value) {
   }
 
   previousRain.value = value
+
+  grondwaterRef.value?.veranderGrondwaterDoorWeather(value)
 }
 
 function updateTemperature(value) {
@@ -72,7 +75,7 @@ function updateTemperature(value) {
     <div id="tree">
       <img :src="treeImage" alt="Seizoensboom">
   <div id="grondwaterkastje">
-  <Grondwaterstand />
+<Grondwaterstand ref="grondwaterRef" />
 </div>
     </div>
     <div id="grass"></div>

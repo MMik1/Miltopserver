@@ -85,6 +85,9 @@ function veranderGrondwaterDoorWeather(sliderWaarde) {
     grondWaterStand.value = apiGrondWaterStand.value.toFixed(2) + " m";
   }, 10000);
 }
+defineExpose({
+  veranderGrondwaterDoorWeather
+});
 
 onMounted(() => {
   updateDateTime();
@@ -106,10 +109,7 @@ onUnmounted(() => {
 <template>
   <div>
     <h2>Grondwaterstand</h2>
-
     <h3>{{ grondWaterStand }}</h3>
-
-   <RainfallSlider @change="veranderGrondwaterDoorWeather" />
   </div>
 </template>
 
