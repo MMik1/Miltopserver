@@ -1,11 +1,16 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
+import RainfallSlider from "./RainfallSlider.vue";
 
 const date = ref("");
 const currentTime = ref("");
+
 const grondWaterStand = ref("Laden...");
+const apiGrondWaterStand = ref(null);
 
 let timer;
+let grondwaterTimer;
+let resetTimer;
 
 // Datum + tijd
 function updateDateTime() {
@@ -37,11 +42,9 @@ async function haalGrondWaterStandOp() {
     const endDate = Math.floor(end.getTime() / 1000);
 
     const url =
-        `/api/grondwater` +
-        `?start_date=${startDate}` +
-        `&end_date=${endDate}`;
-
-    console.log("Request:", url);
+      `/api/grondwater` +
+      `?start_date=${startDate}` +
+      `&end_date=${endDate}`;
 
     const response = await fetch(url);
 
@@ -51,22 +54,36 @@ async function haalGrondWaterStandOp() {
 
     const result = await response.json();
 
-    console.log("API RESULT:", result);
+    if (result?.data && Array.isArray(result.data) && result.data.length > 0) {
+      const laatsteMeting = result.data[result.data.length - 1];
 
-if (result?.data && Array.isArray(result.data) && result.data.length > 0) {
-  const laatsteMeting = result.data[result.data.length - 1];
-
-  grondWaterStand.value = laatsteMeting.value + " m";
-} else {
-  grondWaterStand.value = "Geen meting gevonden";
-}
-
+      apiGrondWaterStand.value = Number(laatsteMeting.value);
+      grondWaterStand.value = apiGrondWaterStand.value.toFixed(2) + " m";
+    } else {
+      grondWaterStand.value = "Geen meting gevonden";
+    }
   } catch (err) {
     console.error("Fout:", err);
-
-    grondWaterStand.value =
-      "Fout bij ophalen";
+    grondWaterStand.value = "Fout bij ophalen";
   }
+}
+
+// Deze functie gebruik je met de weather slider
+function veranderGrondwaterDoorWeather(sliderWaarde) {
+  if (apiGrondWaterStand.value === null) return;
+
+  const midden = 95;
+  const effect = ((sliderWaarde - midden) / midden) * 0.5;
+
+  const simulatorStand = apiGrondWaterStand.value + effect;
+
+  grondWaterStand.value = simulatorStand.toFixed(2) + " m";
+
+  clearTimeout(resetTimer);
+
+  resetTimer = setTimeout(() => {
+    grondWaterStand.value = apiGrondWaterStand.value.toFixed(2) + " m";
+  }, 10000);
 }
 
 onMounted(() => {
@@ -76,11 +93,13 @@ onMounted(() => {
 
   haalGrondWaterStandOp();
 
-  setInterval(haalGrondWaterStandOp, 1800000);
+  grondwaterTimer = setInterval(haalGrondWaterStandOp, 1800000);
 });
 
 onUnmounted(() => {
   clearInterval(timer);
+  clearInterval(grondwaterTimer);
+  clearTimeout(resetTimer);
 });
 </script>
 
@@ -89,6 +108,8 @@ onUnmounted(() => {
     <h2>Grondwaterstand</h2>
 
     <h3>{{ grondWaterStand }}</h3>
+
+   <RainfallSlider @change="veranderGrondwaterDoorWeather" />
   </div>
 </template>
 
