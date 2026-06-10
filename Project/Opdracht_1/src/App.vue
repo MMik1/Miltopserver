@@ -13,6 +13,11 @@ import lenteboom from './assets/lenteboomimage.png'
 import zomerboom from './assets/zomerboomimage.png'
 import herstboom from './assets/herfstboomimage.png'
 
+import zomerAchtergrond from './assets/Achtergrond-zomer.png'
+import herfstAchtergrond from './assets/Achtergrond-lentev2.png'
+import winterAchtergrond from './assets/Achtergrond-winter.png'
+import lenteAchtergrond from './assets/Achtergrond-lentev2.png'
+
 const waterHeight = ref(0)
 const grondwaterRef = ref(null)
 const sliderRef = ref(null)
@@ -27,6 +32,15 @@ const treeImage = computed(() => {
   if (month >= 6 && month <= 8) return zomerboom
 
   return herstboom
+})
+
+const backgroundImage = computed(() => {
+  const month = new Date().getMonth() + 1
+
+  if (month === 12 || month === 1 || month === 2) return winterAchtergrond
+  if (month >= 3 && month <= 5) return lenteAchtergrond
+  if (month >= 6 && month <= 8) return zomerAchtergrond
+  return herfstAchtergrond
 })
 
 function startResetTimer() {
@@ -73,8 +87,11 @@ function updateTemperature(value) {
         </div>
       </div>
 
-      <div id="grass"></div>
-      <div id="dirt"></div>
+<!--      <div id="grass"></div>-->
+<!--      <div id="dirt"></div>-->
+      <div id="backgroundimage">
+        <img :src="backgroundImage" alt="">
+      </div>
 
       <div
         id="water"
@@ -151,6 +168,13 @@ function updateTemperature(value) {
   width: 100%;
   height: 600px;
   background-color: #7C6034;
+  z-index: 2;
+}
+
+#backgroundimage{
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
   z-index: 2;
 }
 
