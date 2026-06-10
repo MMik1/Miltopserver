@@ -157,6 +157,7 @@ height: `${waterHeight}px`
   justify-content: center;
   z-index: 2;
   background-color: #7cd1ff;
+  margin-bottom: -15px;
 }
 
 #grondwaterkastje {
