@@ -15,6 +15,7 @@ import herstboom from './assets/test1.png'
 
 const waterHeight = ref(0)
 const grondwaterRef = ref(null)
+const sliderRef = ref(null)
 
 const treeImage = computed(() => {
   const month = new Date().getMonth() + 1
@@ -33,6 +34,16 @@ const treeImage = computed(() => {
 
   return herstboom
 })
+
+function startResetTimer() {
+  clearTimeout(resetTimer)
+
+  resetTimer = setTimeout(() => {
+    waterHeight.value = 0
+    grondwaterRef.value?.resetNaarApi()
+    sliderRef.value?.resetSliders()
+  }, 10000)
+}
 
 function updateRain(value) {
   waterHeight.value = (value / 190) * 700
@@ -87,6 +98,42 @@ function updateTemperature(value) {
   </div>
   </body>
 
+</div>
+
+<div id="grass"></div>
+
+<div id="dirt"></div>
+
+<div
+id="water"
+:style="{
+height: `${waterHeight}px`
+}"
+></div>
+
+<div id="sliders">
+<WhatsHappening
+  ref="sliderRef"
+  @rain="updateRain"
+  @temperature="updateTemperature"
+/>
+</div>
+
+</div>
+
+<div id="Quiz">
+<Quiz />
+</div>
+
+<div id="qrcode">
+<qrcode />
+</div>
+
+<div id="footer">
+<Footer />
+</div>
+
+</div>
 </template>
 
 <style scoped>
