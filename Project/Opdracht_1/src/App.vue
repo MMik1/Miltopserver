@@ -73,7 +73,8 @@ function updateTemperature(value) {
 </script>
 
 <template>
-  <div id="background" :style="{ backgroundImage: `url(${backgroundImage})` }">
+  <div >
+<!--    id="background" :style="{ backgroundImage: `url(${backgroundImage})` }"-->
     <div id="Header">
       <Header />
     </div>
@@ -87,8 +88,8 @@ function updateTemperature(value) {
         </div>
       </div>
 
-<!--      <div id="grass"></div>-->
-<!--      <div id="dirt"></div>-->
+      <div id="grass"></div>
+      <div id="dirt"></div>
 
       <div
         id="water"
@@ -185,13 +186,13 @@ function updateTemperature(value) {
 //  display: block;
 //}
 
-#background{
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-}
+//#background{
+//  position: relative;
+//  background-size: cover;
+//  background-position: center;
+//  background-repeat: no-repeat;
+//  width: 100%;
+//}
 
 
 #water {
