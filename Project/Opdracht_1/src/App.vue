@@ -8,10 +8,10 @@ import Footer from './components/Footer.vue'
 import qrcode from './components/qrcode.vue'
 import Grondwaterstand from './components/Grondwater.vue'
 
-import winterboom from './assets/test1.png'
-import lenteboom from './assets/test3.png'
-import zomerboom from './assets/zomerboom.png'
-import herstboom from './assets/test1.png'
+import winterboom from './assets/winterboomimage.png'
+import lenteboom from './assets/lenteboomimage.png'
+import zomerboom from './assets/zomerboomimage.png'
+import herstboom from './assets/herfstboomimage.png'
 
 const waterHeight = ref(0)
 const grondwaterRef = ref(null)
