@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import RainfallSlider from "./RainfallSlider.vue";
 
 const date = ref("");
 const currentTime = ref("");
@@ -68,25 +67,34 @@ async function haalGrondWaterStandOp() {
   }
 }
 
-// Deze functie gebruik je met de weather slider
-function veranderGrondwaterDoorWeather(sliderWaarde) {
+function veranderGrondwaterDoorSlider(sliderWaarde) {
   if (apiGrondWaterStand.value === null) return;
 
-  const midden = 95;
-  const effect = ((sliderWaarde - midden) / midden) * 0.5;
+  const maxSlider = 190;
 
-  const simulatorStand = apiGrondWaterStand.value + effect;
+  // 0 → laag
+  // 190 → hoog
+  const percentage = sliderWaarde / maxSlider;
 
-  grondWaterStand.value = simulatorStand.toFixed(2) + " m";
+  // maximaal verschil in meters
+  const maxVerschil = 1;
+
+  const simulatorStand =
+    apiGrondWaterStand.value + percentage * maxVerschil;
+
+  grondWaterStand.value =
+    simulatorStand.toFixed(2) + " m";
 
   clearTimeout(resetTimer);
 
   resetTimer = setTimeout(() => {
-    grondWaterStand.value = apiGrondWaterStand.value.toFixed(2) + " m";
+    grondWaterStand.value =
+      apiGrondWaterStand.value.toFixed(2) + " m";
   }, 10000);
 }
+
 defineExpose({
-  veranderGrondwaterDoorWeather
+  veranderGrondwaterDoorSlider
 });
 
 onMounted(() => {
@@ -104,6 +112,7 @@ onUnmounted(() => {
   clearInterval(grondwaterTimer);
   clearTimeout(resetTimer);
 });
+
 </script>
 
 <template>

@@ -13,8 +13,6 @@ import lenteboom from './assets/test3.png'
 import zomerboom from './assets/zomerboom.png'
 import herstboom from './assets/test1.png'
 
-const previousRain = ref(0)
-const previousTemp = ref(0)
 const waterHeight = ref(100)
 const grondwaterRef = ref(null)
 
@@ -36,28 +34,24 @@ const treeImage = computed(() => {
   return herstboom
 })
 
+// Regen → water stijgt
 function updateRain(value) {
-  if (value > previousRain.value) {
-    const difference = value - previousRain.value
-    waterHeight.value += difference
-  }
+  waterHeight.value = value
 
-  previousRain.value = value
-
-  grondwaterRef.value?.veranderGrondwaterDoorWeather(value)
+  grondwaterRef.value?.veranderGrondwaterDoorSlider(
+    waterHeight.value
+  )
 }
 
+// Temperatuur → water daalt
 function updateTemperature(value) {
-  if (value > previousTemp.value) {
-    const difference = value - previousTemp.value
-    waterHeight.value -= difference
+  const omgekeerdeWaarde = 190 - value
 
-    if (waterHeight.value < 0) {
-      waterHeight.value = 0
-    }
-  }
+  waterHeight.value = omgekeerdeWaarde
 
-  previousTemp.value = value
+  grondwaterRef.value?.veranderGrondwaterDoorSlider(
+    waterHeight.value
+  )
 }
 </script>
 

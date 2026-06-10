@@ -1,4 +1,4 @@
-npm<script setup>
+<script setup>
 import { ref } from 'vue'
 
 const position = ref(0)
