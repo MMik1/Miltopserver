@@ -1,8 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-
-import TemperatureSlider from "@/components/TemperatureSlider.vue";
-import RainfallSlider from "@/components/RainfallSlider.vue";
+import temperatureIcon from '../assets/Temperature.png'
+import rainIcon from '../assets/rainyCloud.png'
+  import TemperatureSlider from "@/components/TemperatureSlider.vue";
+  import RainfallSlider from "@/components/RainfallSlider.vue";
 
 const emit = defineEmits([
   'rain',
@@ -42,16 +43,16 @@ Wat gebeurt er?
 
 <div id="temp" class="circle">
 <img
-id="tempImg"
-src="../assets/Temperature.png"
-alt="temperature"
+  id="tempImg"
+  :src="temperatureIcon"
+  alt="temperature"
 />
 </div>
 
 <div id="rain" class="circle">
 <img
-src="../assets/rainyCloud.png"
-alt="rain cloud"
+  :src="rainIcon"
+  alt="rain cloud"
 />
 </div>
 
