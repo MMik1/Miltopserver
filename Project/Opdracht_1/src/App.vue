@@ -15,6 +15,7 @@ import herstboom from './assets/test1.png'
 
 const waterHeight = ref(0)
 const grondwaterRef = ref(null)
+const sliderRef = ref(null)
 
 let resetTimer
 
@@ -39,11 +40,14 @@ const treeImage = computed(() => {
 function startResetTimer() {
   clearTimeout(resetTimer)
 
-  resetTimer = setTimeout(() => {
-    waterHeight.value = 0
+resetTimer = setTimeout(() => {
+  waterHeight.value = 0
 
-    grondwaterRef.value?.resetNaarApi()
-  }, 10000)
+  grondwaterRef.value?.resetNaarApi()
+
+  sliderRef.value?.resetSliders()
+
+}, 10000)
 }
 
 function updateRain(value) {
@@ -107,6 +111,7 @@ height: `${waterHeight}px`
 
 <div id="sliders">
 <WhatsHappening
+ref="sliderRef"
 @rain="updateRain"
 @temperature="updateTemperature"
 />

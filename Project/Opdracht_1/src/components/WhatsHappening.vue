@@ -27,10 +27,15 @@ function handleTemperature(value){
   </div>
   <div id="sliders">
     <div id="tempSlider">
-      <TemperatureSlider @change="handleTemperature" />
-    </div>
-    <div id="rainSlider">
-      <RainfallSlider @change="handleRain"/>
+<RainfallSlider
+ref="rainRef"
+@change="$emit('rain', $event)"
+/>
+
+<TemperatureSlider
+ref="tempRef"
+@change="$emit('temperature', $event)"
+/>
     </div>
   </div>
 </div>

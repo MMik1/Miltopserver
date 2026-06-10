@@ -32,6 +32,17 @@ function startDrag(event) {
   window.addEventListener('mousemove', moveCircle)
   window.addEventListener('mouseup', stopDrag)
 }
+
+function resetSlider() {
+  position.value = 0
+
+  emit('change', 0)
+}
+
+defineExpose({
+  resetSlider
+})
+
 </script>
 
 <template>
