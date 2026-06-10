@@ -19,10 +19,10 @@ function handleTemperature(value){
 <h2>Wat gebeurt er?</h2>
   <div id="circles">
     <div id="temp" class="circle">
-      <img id="tempImg" src="/Temperature.png.png" alt="a temperature measure">
+      <img id="tempImg" src="../assets/Temperature.png" alt="a temperature measure">
     </div>
     <div id="rain" class="circle">
-      <img src="/rainyCloud.png.png" alt="raining cloud image cartoon png">
+      <img src="../assets/rainyCloud.png" alt="raining cloud image cartoon png">
     </div>
   </div>
   <div id="sliders">
