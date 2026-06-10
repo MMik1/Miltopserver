@@ -177,7 +177,6 @@ function updateTemperature(value) {
 }
 
 #backgroundimage{
-  position: absolute;
   inset: 0;
   z-index: 1;
 }
