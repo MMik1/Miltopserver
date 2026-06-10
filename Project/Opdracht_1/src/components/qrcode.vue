@@ -58,9 +58,12 @@ background: url(../assets/qr-code.png)
 }
 
 button{
+  margin-top: 20px;
   font-size: 20px;
   background: #C4191F;
   border-radius: 15px;
   font-weight: bold;
+  width: 80px;
+  color: #fff;
 }
 </style>
