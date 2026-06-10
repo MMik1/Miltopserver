@@ -35,8 +35,6 @@ function startDrag(event) {
 
 function resetSlider() {
   position.value = 0
-
-  emit('change', 0)
 }
 
 defineExpose({

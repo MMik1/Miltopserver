@@ -40,14 +40,11 @@ const treeImage = computed(() => {
 function startResetTimer() {
   clearTimeout(resetTimer)
 
-resetTimer = setTimeout(() => {
-  waterHeight.value = 0
-
-  grondwaterRef.value?.resetNaarApi()
-
-  sliderRef.value?.resetSliders()
-
-}, 10000)
+  resetTimer = setTimeout(() => {
+    waterHeight.value = 0
+    grondwaterRef.value?.resetNaarApi()
+    sliderRef.value?.resetSliders()
+  }, 10000)
 }
 
 function updateRain(value) {
@@ -111,9 +108,9 @@ height: `${waterHeight}px`
 
 <div id="sliders">
 <WhatsHappening
-ref="sliderRef"
-@rain="updateRain"
-@temperature="updateTemperature"
+  ref="sliderRef"
+  @rain="updateRain"
+  @temperature="updateTemperature"
 />
 </div>
 
