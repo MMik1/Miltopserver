@@ -16,17 +16,25 @@ import herstboom from './assets/test1.png'
 const waterHeight = ref(0)
 const grondwaterRef = ref(null)
 
+let resetTimer
+
 const treeImage = computed(() => {
   const month = new Date().getMonth() + 1
 
-  if (month === 12 || month <= 2) return winterboom
-  if (month <= 5) return lenteboom
-  if (month <= 8) return zomerboom
+  if (month === 12 || month <= 2) {
+    return winterboom
+  }
+
+  if (month <= 5) {
+    return lenteboom
+  }
+
+  if (month <= 8) {
+    return zomerboom
+  }
 
   return herstboom
 })
-
-let resetTimer
 
 function startResetTimer() {
   clearTimeout(resetTimer)
@@ -39,7 +47,8 @@ function startResetTimer() {
 }
 
 function updateRain(value) {
-  waterHeight.value = (value / 190) * 600
+  waterHeight.value =
+    (value / 190) * 600
 
   grondwaterRef.value?.veranderGrondwaterDoorSlider(
     value
@@ -49,7 +58,8 @@ function updateRain(value) {
 }
 
 function updateTemperature(value) {
-  const omgekeerdeWaarde = 190 - value
+  const omgekeerdeWaarde =
+    190 - value
 
   waterHeight.value =
     (omgekeerdeWaarde / 190) * 600
@@ -60,30 +70,23 @@ function updateTemperature(value) {
 
   startResetTimer()
 }
-
-function updateTemperature(value) {
-  const omgekeerdeWaarde = 190 - value
-
-  waterHeight.value =
-    (omgekeerdeWaarde / 190) * 600
-
-  grondwaterRef.value?.veranderGrondwaterDoorSlider(
-    omgekeerdeWaarde
-  )
-}
 </script>
 
 <template>
 <div>
 
 <div id="Header">
-  <Header />
+<Header />
 </div>
 
 <div id="mainContent">
 
 <div id="tree">
-<img :src="treeImage" alt="Seizoensboom">
+
+<img
+:src="treeImage"
+alt="Seizoensboom"
+/>
 
 <div id="grondwaterkastje">
 <Grondwaterstand ref="grondwaterRef" />
@@ -97,7 +100,9 @@ function updateTemperature(value) {
 
 <div
 id="water"
-:style="{ height: `${waterHeight}px` }"
+:style="{
+height: `${waterHeight}px`
+}"
 ></div>
 
 <div id="sliders">
@@ -126,24 +131,31 @@ id="water"
 
 <style scoped>
 #mainContent{
-position: relative;
-overflow: hidden;
+position:relative;
+overflow:hidden;
 }
 
 #tree{
-position: relative;
+position:relative;
+
 display:flex;
+
 justify-content:center;
+
 background:#7cd1ff;
+
 z-index:2;
 }
 
 #grondwaterkastje{
 position:absolute;
+
 left:2vw;
+
 top:calc(500px - 20rem);
 
 width:15rem;
+
 height:20rem;
 
 background:gray;
@@ -188,7 +200,7 @@ min-height:0;
 
 pointer-events:none;
 
-transition:height .3s;
+transition:height .3s ease;
 }
 
 #sliders{
@@ -211,6 +223,7 @@ margin-top:64px;
 
 img{
 width:400px;
+
 height:500px;
 }
 </style>
