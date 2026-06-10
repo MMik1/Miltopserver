@@ -13,7 +13,7 @@ import lenteboom from './assets/test3.png'
 import zomerboom from './assets/zomerboom.png'
 import herstboom from './assets/test1.png'
 
-const waterHeight = ref(100)
+const waterHeight = ref(0)
 const grondwaterRef = ref(null)
 
 const treeImage = computed(() => {
@@ -34,23 +34,19 @@ const treeImage = computed(() => {
   return herstboom
 })
 
-// Regen → water stijgt
 function updateRain(value) {
-  waterHeight.value = value
+  waterHeight.value = (value / 190) * 700
 
   grondwaterRef.value?.veranderGrondwaterDoorSlider(
-    waterHeight.value
+    value
   )
 }
 
-// Temperatuur → water daalt
 function updateTemperature(value) {
-  const omgekeerdeWaarde = 190 - value
-
-  waterHeight.value = omgekeerdeWaarde
+  waterHeight.value = ((190 - value) / 190) * 700
 
   grondwaterRef.value?.veranderGrondwaterDoorSlider(
-    waterHeight.value
+    190 - value
   )
 }
 </script>
@@ -135,12 +131,21 @@ function updateTemperature(value) {
   z-index: 2;
 }
 
-#dirt{
-  position: relative;
+#water{
+  position: absolute;
+  bottom: 0;
+
   width: 100%;
-  height: 600px;
-  background-color: #7C6034;
-  z-index: 2;
+
+  background-color: #0B84B7;
+
+  z-index: 5;
+
+  height: v-bind(waterHeight + 'px');
+
+  min-height: 0;
+
+  max-height: 700px;
 }
 
 #water{
