@@ -42,6 +42,7 @@ onUnmounted(() => {
 
 <style scoped>
 #headers{
+  margin-top: 10px;
   width: 100vw;
   height: 100%;
       background-color: #7cd1ff;

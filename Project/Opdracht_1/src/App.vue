@@ -16,214 +16,154 @@ import herstboom from './assets/test1.png'
 const waterHeight = ref(0)
 const grondwaterRef = ref(null)
 
-let resetTimer
-
 const treeImage = computed(() => {
   const month = new Date().getMonth() + 1
 
-  if (month === 12 || month <= 2) {
+  if (month === 12 || month === 1 || month === 2) {
     return winterboom
   }
 
-  if (month <= 5) {
+  if (month >= 3 && month <= 5) {
     return lenteboom
   }
 
-  if (month <= 8) {
+  if (month >= 6 && month <= 8) {
     return zomerboom
   }
 
   return herstboom
 })
 
-function startResetTimer() {
-  clearTimeout(resetTimer)
-
-  resetTimer = setTimeout(() => {
-    waterHeight.value = 0
-
-    grondwaterRef.value?.resetNaarApi()
-  }, 10000)
-}
-
 function updateRain(value) {
-  waterHeight.value =
-    (value / 190) * 600
+  waterHeight.value = (value / 190) * 700
 
   grondwaterRef.value?.veranderGrondwaterDoorSlider(
     value
   )
-
-  startResetTimer()
 }
 
 function updateTemperature(value) {
-  const omgekeerdeWaarde =
-    190 - value
-
-  waterHeight.value =
-    (omgekeerdeWaarde / 190) * 600
+  waterHeight.value = ((190 - value) / 190) * 700
 
   grondwaterRef.value?.veranderGrondwaterDoorSlider(
-    omgekeerdeWaarde
+    190 - value
   )
-
-  startResetTimer()
 }
 </script>
 
 <template>
-<div>
 
-<div id="Header">
-<Header />
-</div>
+  <body>
+  <div id="Header">
+    <Header/>
+  </div>
+  <div id="mainContent">
+    <div id="waterMeasure">
 
-<div id="mainContent">
+    </div>
 
-<div id="tree">
-
-<img
-:src="treeImage"
-alt="Seizoensboom"
-/>
-
-<div id="grondwaterkastje">
+    <div id="tree">
+      <img :src="treeImage" alt="Seizoensboom">
+  <div id="grondwaterkastje">
 <Grondwaterstand ref="grondwaterRef" />
 </div>
+    </div>
+    <div id="grass"></div>
+    <div id="dirt">
+    </div>
+      <div id="sliders">
+        <WhatsHappening @rain="updateRain" @temperature="updateTemperature" />
+      </div>
+    <div id="water" :style="{height: `${waterHeight}px`}"></div>
+  </div>
+  <div id="Quiz">
+    <Quiz />
+  </div>
+    <div id="qrcode">
+    <qrcode />
+  </div>
+  <div id="footer">
+    <Footer />
+  </div>
+  </body>
 
-</div>
-
-<div id="grass"></div>
-
-<div id="dirt"></div>
-
-<div
-id="water"
-:style="{
-height: `${waterHeight}px`
-}"
-></div>
-
-<div id="sliders">
-<WhatsHappening
-@rain="updateRain"
-@temperature="updateTemperature"
-/>
-</div>
-
-</div>
-
-<div id="Quiz">
-<Quiz />
-</div>
-
-<div id="qrcode">
-<qrcode />
-</div>
-
-<div id="footer">
-<Footer />
-</div>
-
-</div>
 </template>
 
 <style scoped>
 #mainContent{
-position:relative;
-overflow:hidden;
-}
-
-#tree{
-position:relative;
-
-display:flex;
-
-justify-content:center;
-
-background:#7cd1ff;
-
-z-index:2;
-}
-
-#grondwaterkastje{
-position:absolute;
-
-left:2vw;
-
-top:calc(500px - 20rem);
-
-width:15rem;
-
-height:20rem;
-
-background:gray;
-
-z-index:20;
-}
-
-#grass{
-position:relative;
-
-height:100px;
-
-background:#598F29;
-
-z-index:2;
-}
-
-#dirt{
-position:relative;
-
-height:600px;
-
-background:#7C6034;
-
-z-index:2;
-}
-
-#water{
-position:absolute;
-
-bottom:0;
-
-width:100%;
-
-background:rgba(11,132,183,.75);
-
-z-index:3;
-
-max-height:600px;
-
-min-height:0;
-
-pointer-events:none;
-
-transition:height .3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 #sliders{
-position:absolute;
+  position: absolute;
+  top: 650px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
 
-top:650px;
+#tree{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  background-color: #7cd1ff;
+}
 
-width:100%;
+#grondwaterkastje {
+  position: absolute;
+  left: 2vw;            
+  top: calc(500px - 20rem); 
+  
+  width: 15rem;
+  height: 20rem;
+  background-color: gray;
+  z-index: 10;
+}
 
-display:flex;
+#grass{
+  position: relative;
+  width: 100%;
+  height: 100px;
+  background-color: #598F29;
+  z-index: 2;
+}
 
-justify-content:center;
+#water{
+  position: absolute;
+  bottom: 0;
 
-z-index:30;
+  width: 100%;
+
+  background-color: #0B84B7;
+
+  z-index: 5;
+
+  height: v-bind(waterHeight + 'px');
+
+  min-height: 0;
+
+  max-height: 700px;
+}
+
+#water{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #0B84B7;
+  z-index: 5;
+  max-height: 670px;
+  min-height: 5px;
 }
 
 #footer{
-margin-top:64px;
+  margin-top: 64px;
 }
 
 img{
-width:400px;
-
-height:500px;
+  width: 400px;
+  height: 500px;
 }
 </style>
