@@ -89,8 +89,9 @@ function updateTemperature(value) {
 
 <!--      <div id="grass"></div>-->
 <!--      <div id="dirt"></div>-->
-      <div id="backgroundimage" :style="{ backgroundImage: `url(${backgroundImage})` }"></div>
-
+      <div id="backgroundimage">
+        <img :src="backgroundImage" alt="Achtergrond">
+      </div>
       <div
         id="water"
         :style="{ height: `${waterHeight}px` }"
@@ -178,12 +179,14 @@ function updateTemperature(value) {
 #backgroundimage{
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 700px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   z-index: 1;
+}
+
+#backgroundimage img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 
