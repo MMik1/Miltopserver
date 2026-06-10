@@ -26,12 +26,39 @@ const treeImage = computed(() => {
   return herstboom
 })
 
+let resetTimer
+
+function startResetTimer() {
+  clearTimeout(resetTimer)
+
+  resetTimer = setTimeout(() => {
+    waterHeight.value = 0
+
+    grondwaterRef.value?.resetNaarApi()
+  }, 10000)
+}
+
 function updateRain(value) {
   waterHeight.value = (value / 190) * 600
 
   grondwaterRef.value?.veranderGrondwaterDoorSlider(
     value
   )
+
+  startResetTimer()
+}
+
+function updateTemperature(value) {
+  const omgekeerdeWaarde = 190 - value
+
+  waterHeight.value =
+    (omgekeerdeWaarde / 190) * 600
+
+  grondwaterRef.value?.veranderGrondwaterDoorSlider(
+    omgekeerdeWaarde
+  )
+
+  startResetTimer()
 }
 
 function updateTemperature(value) {

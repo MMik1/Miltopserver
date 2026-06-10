@@ -93,8 +93,16 @@ function veranderGrondwaterDoorSlider(sliderWaarde) {
   }, 10000);
 }
 
+function resetNaarApi() {
+  if (apiGrondWaterStand.value !== null) {
+    grondWaterStand.value =
+      apiGrondWaterStand.value.toFixed(2) + " m"
+  }
+}
+
 defineExpose({
-  veranderGrondwaterDoorSlider
+  veranderGrondwaterDoorSlider,
+  resetNaarApi
 });
 
 onMounted(() => {
