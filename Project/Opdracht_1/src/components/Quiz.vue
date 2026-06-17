@@ -25,8 +25,8 @@ import quiz19 from '../assets/test19.png'
 import quiz20 from '../assets/test20.png'
 import quiz21 from '../assets/test21.png'
 
-import goedImage from '../assets/test3.png'
-import foutImage from '../assets/image.png'
+import goedImage from '../assets/goed.png'
+import foutImage from '../assets/fout.png'
 
 const showPopup = ref(false)
 const popupMessage = ref('')
