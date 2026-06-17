@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import {ref, onMounted, onUnmounted} from "vue";
 
 const date = ref("");
 const currentTime = ref("");
@@ -16,16 +16,16 @@ function updateDateTime() {
   const now = new Date();
 
   date.value =
-    now.getDate().toString().padStart(2, "0") +
-    "/" +
-    (now.getMonth() + 1).toString().padStart(2, "0") +
-    "/" +
-    now.getFullYear();
+      now.getDate().toString().padStart(2, "0") +
+      "/" +
+      (now.getMonth() + 1).toString().padStart(2, "0") +
+      "/" +
+      now.getFullYear();
 
   currentTime.value =
-    now.getHours().toString().padStart(2, "0") +
-    ":" +
-    now.getMinutes().toString().padStart(2, "0");
+      now.getHours().toString().padStart(2, "0") +
+      ":" +
+      now.getMinutes().toString().padStart(2, "0");
 }
 
 // Grondwater ophalen
@@ -41,9 +41,9 @@ async function haalGrondWaterStandOp() {
     const endDate = Math.floor(end.getTime() / 1000);
 
     const url =
-      `/api/grondwater` +
-      `?start_date=${startDate}` +
-      `&end_date=${endDate}`;
+        `/api/grondwater` +
+        `?start_date=${startDate}` +
+        `&end_date=${endDate}`;
 
     const response = await fetch(url);
 
@@ -80,23 +80,23 @@ function veranderGrondwaterDoorSlider(sliderWaarde) {
   const maxVerschil = 1;
 
   const simulatorStand =
-    apiGrondWaterStand.value + percentage * maxVerschil;
+      apiGrondWaterStand.value + percentage * maxVerschil;
 
   grondWaterStand.value =
-    simulatorStand.toFixed(2) + " m";
+      simulatorStand.toFixed(2) + " m";
 
   clearTimeout(resetTimer);
 
   resetTimer = setTimeout(() => {
     grondWaterStand.value =
-      apiGrondWaterStand.value.toFixed(2) + " m";
+        apiGrondWaterStand.value.toFixed(2) + " m";
   }, 10000);
 }
 
 function resetNaarApi() {
   if (apiGrondWaterStand.value !== null) {
     grondWaterStand.value =
-      apiGrondWaterStand.value.toFixed(2) + " m"
+        apiGrondWaterStand.value.toFixed(2) + " m"
   }
 }
 
@@ -125,8 +125,8 @@ onUnmounted(() => {
 
 <template>
   <div>
-    <h2>Grondwaterstand</h2>
-    <h3>{{ grondWaterStand }}</h3>
+    <h5>Grondwaterstand</h5>
+    <h4>{{ grondWaterStand }}</h4>
   </div>
 </template>
 
@@ -135,13 +135,22 @@ div {
   padding: 20px;
 }
 
-h2 {
-    color: white;
-  margin-bottom: 10px;
+h5 {
+  color: white;
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: -10px;
 }
 
-h3 {
-    font-size: 50px;
+h4 {
+  font-size: 20px;
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: -20px;
   color: #0099ff;
+}
+
+h5, h4{
+  padding-left: 10px;
 }
 </style>

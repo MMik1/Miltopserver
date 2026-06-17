@@ -18,6 +18,7 @@ import herfstAchtergrond from './assets/Achtergrond-herfst.png'
 import winterAchtergrond from './assets/Achtergrond-winter.png'
 import lenteAchtergrond from './assets/Achtergrond-lentev2.png'
 
+
 const waterHeight = ref(0)
 const grondwaterRef = ref(null)
 const sliderRef = ref(null)
@@ -81,7 +82,7 @@ function updateTemperature(value) {
       </div>
 
       <div id="grondwaterkastje">
-        <Grondwaterstand ref="grondwaterRef" />
+        <Grondwaterstand  ref="grondwaterRef" />
       </div>
 
       <div id="sliders">
@@ -126,6 +127,7 @@ function updateTemperature(value) {
   height: auto;
 }
 
+
 #tree {
   position: absolute;
   left: 50%;
@@ -147,9 +149,13 @@ function updateTemperature(value) {
   bottom: 69%;
   width: clamp(8rem, 15%, 15rem);
   height: clamp(11rem, 20%, 20rem);
-  background-color: gray;
+  background-image: url("./assets/watermeter.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   z-index: 20;
 }
+
 
 #sliders {
   position: absolute;
