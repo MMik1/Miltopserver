@@ -14,7 +14,7 @@ import zomerboom from './assets/zomerboomimage.png'
 import herstboom from './assets/herfstboomimage.png'
 
 import zomerAchtergrond from './assets/Achtergrond-zomer.png'
-import herfstAchtergrond from './assets/Achtergrond-lentev2.png'
+import herfstAchtergrond from './assets/Achtergrond-herfst.png'
 import winterAchtergrond from './assets/Achtergrond-winter.png'
 import lenteAchtergrond from './assets/Achtergrond-lentev2.png'
 
@@ -22,21 +22,20 @@ const waterHeight = ref(0)
 const grondwaterRef = ref(null)
 const sliderRef = ref(null)
 
+const MAX_WATER_PERCENT = 70
+
 let resetTimer
 
 const treeImage = computed(() => {
   const month = new Date().getMonth() + 1
-
   if (month === 12 || month === 1 || month === 2) return winterboom
   if (month >= 3 && month <= 5) return lenteboom
   if (month >= 6 && month <= 8) return zomerboom
-
   return herstboom
 })
 
 const backgroundImage = computed(() => {
   const month = new Date().getMonth() + 1
-
   if (month === 12 || month === 1 || month === 2) return winterAchtergrond
   if (month >= 3 && month <= 5) return lenteAchtergrond
   if (month >= 6 && month <= 8) return zomerAchtergrond
@@ -45,7 +44,6 @@ const backgroundImage = computed(() => {
 
 function startResetTimer() {
   clearTimeout(resetTimer)
-
   resetTimer = setTimeout(() => {
     waterHeight.value = 0
     grondwaterRef.value?.resetNaarApi()
@@ -54,46 +52,37 @@ function startResetTimer() {
 }
 
 function updateRain(value) {
-  waterHeight.value = (value / 190) * 600
-
+  waterHeight.value = (value / 190) * MAX_WATER_PERCENT
   grondwaterRef.value?.veranderGrondwaterDoorSlider(value)
-
   startResetTimer()
 }
 
 function updateTemperature(value) {
   const omgekeerdeWaarde = 190 - value
-
-  waterHeight.value = (omgekeerdeWaarde / 190) * 600
-
+  waterHeight.value = (omgekeerdeWaarde / 190) * MAX_WATER_PERCENT
   grondwaterRef.value?.veranderGrondwaterDoorSlider(omgekeerdeWaarde)
-
   startResetTimer()
 }
 </script>
 
 <template>
-  <div     id="background" :style="{ backgroundImage: `url(${backgroundImage})` }" >
-    <div id="Header">
-      <Header />
-    </div>
+  <div id="page">
+    <section id="mainContent">
+      <img class="bgLayer" :src="backgroundImage" alt="" />
 
-    <div id="mainContent">
-      <div id="tree">
-        <img :src="treeImage" alt="Seizoensboom">
-
-        <div id="grondwaterkastje">
-          <Grondwaterstand ref="grondwaterRef" />
-        </div>
+      <div id="Header">
+        <Header />
       </div>
 
-      <div id="grass"></div>
-      <div id="dirt"></div>
+      <div id="water" :style="{ height: waterHeight + '%' }"></div>
 
-      <div
-        id="water"
-        :style="{ height: `${waterHeight}px` }"
-      ></div>
+      <div id="tree">
+        <img :src="treeImage" alt="Seizoensboom" />
+      </div>
+
+      <div id="grondwaterkastje">
+        <Grondwaterstand ref="grondwaterRef" />
+      </div>
 
       <div id="sliders">
         <WhatsHappening
@@ -102,109 +91,104 @@ function updateTemperature(value) {
           @temperature="updateTemperature"
         />
       </div>
-    </div>
+    </section>
 
-    <div id="Quiz">
+    <section id="Quiz">
       <Quiz />
-    </div>
+    </section>
 
-    <div id="qrcode">
+    <section id="qrcode">
       <qrcode />
-    </div>
+    </section>
 
-    <div id="footer">
+    <footer id="footer">
       <Footer />
-    </div>
+    </footer>
   </div>
 </template>
 
 <style scoped>
+#page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 #mainContent {
   position: relative;
+  width: 100%;
   overflow: hidden;
+}
+
+.bgLayer {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#tree {
+  position: absolute;
+  left: 50%;
+  bottom: 69%;
+  transform: translateX(-50%);
+  width: 22%;
+  z-index: 4;
+}
+
+#tree img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#grondwaterkastje {
+  position: absolute;
+  left: 2%;
+  bottom: 69%;
+  width: clamp(8rem, 15%, 15rem);
+  height: clamp(11rem, 20%, 20rem);
+  background-color: gray;
+  z-index: 20;
 }
 
 #sliders {
   position: absolute;
-  top: 650px;
+  left: 50%;
+  top: 4%;
+  transform: translateX(-50%);
   width: 100%;
   display: flex;
   justify-content: center;
   z-index: 30;
 }
 
-#tree {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  z-index: 3;
-}
-
-#tree img {
-  width: 400px;
-  height: 500px;
-}
-
-
-#grondwaterkastje {
-  position: absolute;
-  left: 2vw;
-  top: calc(500px - 20rem);
-  width: 15rem;
-  height: 20rem;
-  background-color: gray;
-  z-index: 20;
-}
-
-#grass {
-  position: relative;
-  width: 100%;
-  height: 100px;
-  z-index: 2;
-}
-
-#dirt {
-  position: relative;
-  width: 100%;
-  height: 600px;
-  z-index: 2;
-}
-
-#backgroundimage{
-  inset: 0;
-  z-index: 1;
-}
-
-#backgroundimage img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-#background{
-  position: relative;
-  background-size: cover;
-  background-position: center -290px;
-  background-repeat: no-repeat;
-  width: 100%;
-}
-
-
 #water {
   position: absolute;
+  left: 0;
   bottom: 0;
   width: 100%;
-  background-color: rgba(23, 121, 148, 0.9);
-  z-index: 3;
-  max-height: 600px;
-  min-height: 0;
+  background-color: rgba(11, 132, 183, 0.55);
+  z-index: 1;
   pointer-events: none;
-  transition: height .3s ease;
+  transition: height 0.3s ease;
+}
+
+#Header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 40;
+}
+
+#Quiz,
+#qrcode {
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 #footer {
   margin-top: 64px;
 }
-
 </style>

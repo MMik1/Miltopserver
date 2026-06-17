@@ -6,27 +6,27 @@ import quiz1 from '../assets/test1.png'
 import quiz2 from '../assets/test2.png'
 import quiz3 from '../assets/test3.png'
 import confetti from 'canvas-confetti'
-import quiz4 from '../assets/test1.png'
-import quiz5 from '../assets/test2.png'
-import quiz6 from '../assets/test3.png'
-import quiz7 from '../assets/test1.png'
-import quiz8 from '../assets/test1.png'
-import quiz9 from '../assets/test1.png'
-import quiz10 from '../assets/test1.png'
-import quiz11 from '../assets/test1.png'
-import quiz12 from '../assets/test1.png'
-import quiz13 from '../assets/test1.png'
-import quiz14 from '../assets/test1.png'
-import quiz15 from '../assets/test1.png'
-import quiz16 from '../assets/test1.png'
-import quiz17 from '../assets/test1.png'
-import quiz18 from '../assets/test1.png'
-import quiz19 from '../assets/test1.png'
-import quiz20 from '../assets/test1.png'
-import quiz21 from '../assets/test1.png'
+import quiz4 from '../assets/quiz5.png'
+import quiz5 from '../assets/quiz4.png'
+import quiz6 from '../assets/quiz6.png'
+import quiz7 from '../assets/test8.png'
+import quiz8 from '../assets/test7.png'
+import quiz9 from '../assets/test9.png'
+import quiz10 from '../assets/test11.png'
+import quiz11 from '../assets/test12.png'
+import quiz12 from '../assets/test10.png'
+import quiz13 from '../assets/test13.png'
+import quiz14 from '../assets/test14.png'
+import quiz15 from '../assets/test15.png'
+import quiz16 from '../assets/test16.png'
+import quiz17 from '../assets/test17.png'
+import quiz18 from '../assets/test18.png'
+import quiz19 from '../assets/test19.png'
+import quiz20 from '../assets/test20.png'
+import quiz21 from '../assets/test21.png'
 
-import goedImage from '../assets/test3.png'
-import foutImage from '../assets/image.png'
+import goedImage from '../assets/goed.png'
+import foutImage from '../assets/fout.png'
 
 const showPopup = ref(false)
 const popupMessage = ref('')
@@ -51,27 +51,27 @@ const questions = [
   {
     text: 'Wat gebeurt er met een deel van het regenwater dat op de grond valt?',
     correct: 2,
-    images: [quiz1, quiz4, quiz5]
+    images: [quiz9, quiz7, quiz8]
   },
   {
     text: 'Waarvoor wordt grondwater in Nederland veel gebruikt?',
-    correct: 2,
-    images: [quiz1, quiz4, quiz5]
+    correct: 0,
+    images: [quiz12, quiz11, quiz10]
   },
   {
     text: 'Wat is een risico van te veel grondwater oppompen?',
     correct: 0,
-    images: [quiz1, quiz4, quiz5]
+    images: [quiz13, quiz14, quiz15]
   },
   {
-    text: 'Hoe wordt grondwater meestal naar boven gehaald?',
-    correct: 0,
-    images: [quiz1, quiz4, quiz5]
+    text: 'Waarom is zand vaak geschikt voor waterwinning?',
+    correct: 1,
+    images: [quiz17, quiz16, quiz18]
   },
   {
     text: 'Welke uitspraak over regenwater is juist?',
-    correct: 0,
-    images: [quiz1, quiz4, quiz5]
+    correct: 2,
+    images: [quiz21, quiz20, quiz19]
   }
 ]
 
