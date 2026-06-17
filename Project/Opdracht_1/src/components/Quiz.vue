@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import {ref} from 'vue'
 import QuizCard from './Quizcard.vue'
 
 import quiz1 from '../assets/test1.png'
@@ -63,7 +63,7 @@ function fireConfetti() {
   const count = 200
 
   const defaults = {
-    origin: { y: 0.7 }
+    origin: {y: 0.7}
   }
 
   function fire(particleRatio, opts) {
@@ -169,23 +169,23 @@ function checkAnswer(index) {
 
       <div class="card-container" v-if="!quizKlaar">
         <QuizCard
-          v-for="(image, index) in questions[currentQuestion].images"
-          :key="index"
-          :backgroundImage="image"
-          @click="checkAnswer(index)"
+            v-for="(image, index) in questions[currentQuestion].images"
+            :key="index"
+            :backgroundImage="image"
+            @click="checkAnswer(index)"
         />
       </div>
 
       <div
-        v-if="showPopup"
-        class="popup-container"
+          v-if="showPopup"
+          class="popup-container"
       >
         <div class="popup-wrapper">
-          <img class="image-icon" :src="popupImage" alt="" />
+          <img class="image-icon" :src="popupImage" alt=""/>
 
           <p
-            class="popup-text"
-            :class="popupCorrect ? 'goed' : 'fout'"
+              class="popup-text"
+              :class="popupCorrect ? 'goed' : 'fout'"
           >
             {{ popupMessage }}
           </p>
@@ -198,22 +198,23 @@ function checkAnswer(index) {
 
 <style scoped>
 .uw-100 {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #0E87CC;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(23, 121, 148, 0.9);
 }
-.container{
+
+.container {
   width: 1240px;
-height: 547px;
-gap: 95px;
+  height: 547px;
+  gap: 95px;
   display: flex;
   flex-direction: column;
   padding-bottom: 6rem;
 }
 
-.title-container{
+.title-container {
   width: 784px;
   height: 130px;
 
@@ -226,18 +227,18 @@ gap: 95px;
   margin: 0 auto;
 }
 
-.title{
+.title {
   margin: 0;
 
   color: #F4EFE8;
-  font-family: "DM Serif Display";
+  font-family: "DM Serif Display", sans-serif;
   font-size: 42px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 
-.text{
+.text {
   margin: 0;
 
   color: #F4EFE8;
@@ -245,29 +246,31 @@ gap: 95px;
 
   text-align: center;
 
-  font-family: "DM Serif Display";
+  font-family: "DM Serif Display", sans-serif;
   font-size: 28px;
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
 }
 
-.card-container{
+.card-container {
   width: 100%;
-  
-gap: 80px;
+
+  gap: 80px;
   display: flex;
   justify-content: space-between;
 
   margin-top: auto;
 }
+
 .image-icon {
   height: 4rem;
   width: 4rem;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.popup-container{
+
+.popup-container {
   position: fixed;
 
   top: 50%;
@@ -287,7 +290,7 @@ gap: 80px;
   z-index: 999;
 }
 
-.popup-wrapper{
+.popup-wrapper {
   width: 100%;
   display: flex;
   padding: 25px;
@@ -299,34 +302,37 @@ gap: 80px;
   border: 1px solid #F2F2F2;
 }
 
-.popup-text{
+.popup-text {
   margin: 0;
 
   color: #F4EFE8;
   text-align: center;
 
-  font-family: Inter;
+  font-family: Inter, sans-serif;
   font-size: 22px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
 
-.goed{
+.goed {
   color: #7CFFB2;
 }
-.goedeind{
+
+.goedeind {
   font-size: 3rem;
   color: #7CFFB2;
 }
 
-.fout{
+.fout {
   color: #FFB3B3;
 }
-.fouteind{
-   font-size: 3rem;
+
+.fouteind {
+  font-size: 3rem;
   color: #FFB3B3;
 }
+
 .result-container {
   display: flex;
   flex-direction: column;

@@ -33,17 +33,18 @@ onUnmounted(() => {
     <h2>Een kijkje naar...</h2>
     <h1>Grondwater</h1>
 
+  </div>
     <div id="currentDate">
       <h1 id="date">{{ date }}</h1>
       <h3 id="time">{{currentTime}}</h3>
     </div>
-  </div>
 </template>
 
 <style scoped>
 #headers{
   width: 100%;
   height: 100%;
+  padding-top: 20px;
 }
 
 #currentDate{
@@ -69,13 +70,13 @@ onUnmounted(() => {
 
   h1, h2{
     color: #fff;
+    font-family: sans-serif;
   }
 
   h1{
     padding-left: 5rem;
     font-size: 80px;
     margin-top: 0px;
-    margin-bottom: 0px;
 
   }
 

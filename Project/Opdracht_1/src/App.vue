@@ -73,8 +73,7 @@ function updateTemperature(value) {
 </script>
 
 <template>
-  <div >
-<!--    id="background" :style="{ backgroundImage: `url(${backgroundImage})` }"-->
+  <div     id="background" :style="{ backgroundImage: `url(${backgroundImage})` }" >
     <div id="Header">
       <Header />
     </div>
@@ -139,7 +138,6 @@ function updateTemperature(value) {
   display: flex;
   justify-content: center;
   z-index: 3;
-  margin-bottom: -15px;
 }
 
 #tree img {
@@ -162,7 +160,6 @@ function updateTemperature(value) {
   position: relative;
   width: 100%;
   height: 100px;
-  background-color: #598F29;
   z-index: 2;
 }
 
@@ -170,7 +167,6 @@ function updateTemperature(value) {
   position: relative;
   width: 100%;
   height: 600px;
-  background-color: #7C6034;
   z-index: 2;
 }
 
@@ -179,27 +175,27 @@ function updateTemperature(value) {
   z-index: 1;
 }
 
-//#backgroundimage img{
-//  width: 100%;
-//  height: 100%;
-//  object-fit: cover;
-//  display: block;
-//}
+#backgroundimage img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-//#background{
-//  position: relative;
-//  background-size: cover;
-//  background-position: center;
-//  background-repeat: no-repeat;
-//  width: 100%;
-//}
+#background{
+  position: relative;
+  background-size: cover;
+  background-position: center -290px;
+  background-repeat: no-repeat;
+  width: 100%;
+}
 
 
 #water {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: rgba(11, 132, 183, 0.75);
+  background-color: rgba(23, 121, 148, 0.9);
   z-index: 3;
   max-height: 600px;
   min-height: 0;
