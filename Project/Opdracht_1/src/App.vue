@@ -129,7 +129,7 @@ function updateTemperature(value) {
 #tree {
   position: absolute;
   left: 50%;
-  bottom: 70%;                
+  bottom: 69%;                
   transform: translateX(-50%);
   width: 22%;                
   z-index: 4;
@@ -143,8 +143,8 @@ function updateTemperature(value) {
 
 #grondwaterkastje {
   position: absolute;
-  right: 2%;
-  bottom: 70%;               
+  left: 2%;
+  bottom: 69%;               
   width: clamp(8rem, 15%, 15rem);
   height: clamp(11rem, 20%, 20rem);
   background-color: gray;
