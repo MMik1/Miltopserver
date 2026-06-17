@@ -21,7 +21,7 @@
   background: white;
   display: flex;
   width: 100%;
-  height: 209px;
+  height: 200px;
   padding: 10px 50px;
   justify-content: space-between;
   align-items: center;
