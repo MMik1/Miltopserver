@@ -28,17 +28,14 @@ let resetTimer
 
 const treeImage = computed(() => {
   const month = new Date().getMonth() + 1
-
   if (month === 12 || month === 1 || month === 2) return winterboom
   if (month >= 3 && month <= 5) return lenteboom
   if (month >= 6 && month <= 8) return zomerboom
-
   return herstboom
 })
 
 const backgroundImage = computed(() => {
   const month = new Date().getMonth() + 1
-
   if (month === 12 || month === 1 || month === 2) return winterAchtergrond
   if (month >= 3 && month <= 5) return lenteAchtergrond
   if (month >= 6 && month <= 8) return zomerAchtergrond
@@ -47,7 +44,6 @@ const backgroundImage = computed(() => {
 
 function startResetTimer() {
   clearTimeout(resetTimer)
-
   resetTimer = setTimeout(() => {
     waterHeight.value = 0
     grondwaterRef.value?.resetNaarApi()
@@ -57,62 +53,66 @@ function startResetTimer() {
 
 function updateRain(value) {
   waterHeight.value = (value / 190) * MAX_WATER_PERCENT
-
   grondwaterRef.value?.veranderGrondwaterDoorSlider(value)
-
   startResetTimer()
 }
 
 function updateTemperature(value) {
   const omgekeerdeWaarde = 190 - value
-
   waterHeight.value = (omgekeerdeWaarde / 190) * MAX_WATER_PERCENT
-
   grondwaterRef.value?.veranderGrondwaterDoorSlider(omgekeerdeWaarde)
-
   startResetTimer()
 }
 </script>
 
 <template>
-  <div id="mainContent">
-    <img class="bgLayer" :src="backgroundImage" alt="" />
-    <div id="Header">
-      <Header />
-    </div>
-    <div id="water" :style="{ height: waterHeight + '%' }"></div>
+  <div id="page">
+    <section id="mainContent">
+      <img class="bgLayer" :src="backgroundImage" alt="" />
 
-    <div id="tree">
-      <img :src="treeImage" alt="Seizoensboom" />
-    </div>
+      <div id="Header">
+        <Header />
+      </div>
 
-    <div id="grondwaterkastje">
-      <Grondwaterstand ref="grondwaterRef" />
-    </div>
+      <div id="water" :style="{ height: waterHeight + '%' }"></div>
 
-    <div id="sliders">
-      <WhatsHappening
-        ref="sliderRef"
-        @rain="updateRain"
-        @temperature="updateTemperature"
-      />
-    </div>
-  </div>
+      <div id="tree">
+        <img :src="treeImage" alt="Seizoensboom" />
+      </div>
 
-  <div id="Quiz">
-    <Quiz />
-  </div>
+      <div id="grondwaterkastje">
+        <Grondwaterstand ref="grondwaterRef" />
+      </div>
 
-  <div id="qrcode">
-    <qrcode />
-  </div>
+      <div id="sliders">
+        <WhatsHappening
+          ref="sliderRef"
+          @rain="updateRain"
+          @temperature="updateTemperature"
+        />
+      </div>
+    </section>
 
-  <div id="footer">
-    <Footer />
+    <section id="Quiz">
+      <Quiz />
+    </section>
+
+    <section id="qrcode">
+      <qrcode />
+    </section>
+
+    <footer id="footer">
+      <Footer />
+    </footer>
   </div>
 </template>
 
 <style scoped>
+#page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
 #mainContent {
   position: relative;
@@ -129,9 +129,9 @@ function updateTemperature(value) {
 #tree {
   position: absolute;
   left: 50%;
-  bottom: 69%;                
+  bottom: 69%;
   transform: translateX(-50%);
-  width: 22%;                
+  width: 22%;
   z-index: 4;
 }
 
@@ -144,7 +144,7 @@ function updateTemperature(value) {
 #grondwaterkastje {
   position: absolute;
   left: 2%;
-  bottom: 69%;               
+  bottom: 69%;
   width: clamp(8rem, 15%, 15rem);
   height: clamp(11rem, 20%, 20rem);
   background-color: gray;
@@ -154,7 +154,7 @@ function updateTemperature(value) {
 #sliders {
   position: absolute;
   left: 50%;
-  top: 4%;                     
+  top: 4%;
   transform: translateX(-50%);
   width: 100%;
   display: flex;
@@ -178,7 +178,14 @@ function updateTemperature(value) {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 40;           
+  z-index: 40;
+}
+
+#Quiz,
+#qrcode {
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 #footer {
