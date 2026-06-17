@@ -17,9 +17,11 @@ import zomerAchtergrond from './assets/Achtergrond-zomer.png'
 import herfstAchtergrond from './assets/Achtergrond-herfst.png'
 import winterAchtergrond from './assets/Achtergrond-winter.png'
 import lenteAchtergrond from './assets/Achtergrond-lentev2.png'
+
 const waterHeight = ref(0)
 const grondwaterRef = ref(null)
 const sliderRef = ref(null)
+
 const MAX_WATER_PERCENT = 70
 
 let resetTimer
@@ -79,12 +81,15 @@ function updateTemperature(value) {
       <Header />
     </div>
     <div id="water" :style="{ height: waterHeight + '%' }"></div>
+
     <div id="tree">
       <img :src="treeImage" alt="Seizoensboom" />
     </div>
+
     <div id="grondwaterkastje">
       <Grondwaterstand ref="grondwaterRef" />
     </div>
+
     <div id="sliders">
       <WhatsHappening
         ref="sliderRef"
@@ -124,9 +129,9 @@ function updateTemperature(value) {
 #tree {
   position: absolute;
   left: 50%;
-  bottom: 69%;                
+  bottom: 70%;                
   transform: translateX(-50%);
-  width: 22%;               
+  width: 22%;                
   z-index: 4;
 }
 
@@ -138,23 +143,25 @@ function updateTemperature(value) {
 
 #grondwaterkastje {
   position: absolute;
-  left: 2%;
-  bottom: 69%;                 /* op de grasrand */
+  right: 2%;
+  bottom: 70%;               
   width: clamp(8rem, 15%, 15rem);
   height: clamp(11rem, 20%, 20rem);
   background-color: gray;
   z-index: 20;
 }
+
 #sliders {
   position: absolute;
   left: 50%;
-  top: 4%;                  
+  top: 4%;                     
   transform: translateX(-50%);
   width: 100%;
   display: flex;
   justify-content: center;
   z-index: 30;
 }
+
 #water {
   position: absolute;
   left: 0;
@@ -171,8 +178,7 @@ function updateTemperature(value) {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 40;         
-
+  z-index: 40;           
 }
 
 #footer {
